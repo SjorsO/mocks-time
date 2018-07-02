@@ -1,0 +1,36 @@
+{
+    "name": "sjorso/mocks-time",
+    "description": "A trait that provides a simple, fluent interface for working with Carbon::setTestNow()",
+    "license": "MIT",
+    "homepage": "https://github.com/SjorsO/mocks-time",
+    "keywords": [
+        "carbon",
+        "datetime",
+        "setTestNow",
+        "testing",
+        "time"
+    ],
+    "authors": [
+        {
+            "name": "Sjors Ottjes",
+            "email": "sjorsottjes@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SjorsO\\MocksTime\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SjorsO\\MocksTime\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^7.0",
+        "nesbot/carbon": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0|^7.0"
+    }
+}
