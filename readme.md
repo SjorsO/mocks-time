@@ -6,6 +6,31 @@ A trait that provides a simple, fluent interface for working with `Carbon::setTe
 composer require sjorso/mocks-time --dev
 ```
 
+## Why
+If you are working on a project where you often time travel in your tests, then this package could make that more convenient and readable. If you don't time travel in your tests, then this package won't offer you much benefit.
+
+The code below shows an example of how this package can be used:
+```php
+/** @test */
+function it_gets_all_schedules_that_should_be_sent()
+{
+    $this->setTestNow('2018-03-28 12:00:00');
+
+    $schedule1 = Schedule::create(['sent' => false, 'send_at' => now()]);
+    $schedule2 = Schedule::create(['sent' => false, 'send_at' => now()->addMinutes(1)]);
+    
+    $this->assertSame([$schedule1], Schedule::shouldBeSent());
+    
+    $this->progressTimeInSeconds(59);
+    
+    $this->assertSame([$schedule1], Schedule::shouldBeSent());
+    
+    $this->progressTimeInSeconds(1);
+    
+    $this->assertSame([$schedule1, $schedule2], Schedule::shouldBeSent());    
+}
+```
+
 ## Usage
 Use the trait in your Phpunit testcase:
 ```php
